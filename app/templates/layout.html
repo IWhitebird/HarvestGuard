@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-	<title>{{ title }}</title>
+	<!-- <title>{{ title }}</title> -->
+	<title>Crop Recommender</title>
 	<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
 
 	<!-- for-mobile-apps -->
@@ -131,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- custom css -->
 	<link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
-	<!-- <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png?') }}"> -->
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png?') }}">
 
 
 	<script type="text/JavaScript" src="{{ url_for('static', filename='scripts/cities.js') }}"></script>
@@ -155,10 +156,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="background-color: #1C00ff00;">
+	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="background-color: #1C00ff00;"> -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top fixed-top" style="background-color: #1C00ff00;">
 		<div class="container">
 			<a class="navbar-brand" href="{{ url_for('home') }}">
-				<img src="{{ url_for('static', filename='images/logo.jpg') }}" style="width: 90px; height: 55px" alt="">
+				<img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 220px; height: 100px" alt="">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -191,36 +193,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	{% block body %} {% endblock %}
 
 	<!-- footer -->
+	
+	<!-- //footer -->
 	<footer class="text-center py-5">
 		<div class="container py-md-3">
 			<!-- logo -->
 			<h2 class="logo2 text-center">
 				<a href="{{ url_for('home') }}">
-					Harvestify
+					CROP RECOMMENDER
 				</a>
 			</h2>
 			<!-- //logo -->
 			<!-- address -->
 			<div class="contact-left-footer mt-4">
-
-
-
-
-
-				<!-- <a href="community.html">Community</a> -->
 				</p>
 			</div>
 			<div class="w3l-copy text-center">
 				<p class="text-da">An Environmental Intelligence Startup<br> </p>
 			</div>
 			<p class="homelogo">
-			<p>Made with ❤️ by Atharva</p>
-			<p>&copy; Copyright 2021 Atharva Ingle</p>
 			
 		</div>
 	</footer>
-	<!-- //footer -->
-
 	<!-- move top icon -->
 	<a href="#home" class="move-top text-center"></a>
 	<!-- //move top icon -->

@@ -246,7 +246,7 @@ def disease_prediction():
         if 'file' not in request.files:
             return redirect(request.url)
         file = request.files.get('file')
-        if not file:
+        if  not file:
             return render_template('disease.html', title=title)
         try:
             img = file.read()

@@ -591,7 +591,14 @@ p.about-text {
 
 .blog-left,.blog-middle,.blog-right{
 	position: relative;
+	transition: all 0.3s ease;
 }
+
+.blog-left:hover,.blog-middle:hover,.blog-right:hover {
+    transform: scale(1.05);
+	
+}
+
 .blog-info {
     background: #fff;
     padding: 30px;
@@ -602,6 +609,14 @@ p.about-text {
     top: 200px;
 	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.08), 0 5px 8px 0 rgba(0, 0, 0, 0.12), 0 1px 14px 0 rgba(0, 0, 0, 0.06);
 }
+
+
+
+.mt-2{
+	margin-bottom: 10px;
+
+}
+
 .blog-info p {
     letter-spacing: 1px;
     line-height: 28px;
