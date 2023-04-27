@@ -1,133 +1,180 @@
 {% extends 'layout.html' %} {% block body %}
 
 <style>
-  html body {
-    background-color: rgb(206, 206, 228);
+
+    html body {
+      background-color: rgb(206, 206, 228);
+
+      
   }
+
+  
 </style>
 <!--Form Section-->
-<br /><br /><br /><br /><br />
-<h2 style="text-align: center; margin: 0px; color: black">
-  <b>Get informed advice on fertilizer based on soil</b>
+<br /><br /><br /><br />
+<h2 style="text-align: center; margin: 50px 0px 0px; color: black">
+  <b>Find out the most suitable crop to grow in your farm</b>
 </h2>
 <br />
 
 <div
   style="
     width: 350px;
-    height: 40rem;
+    height: 50rem;
     margin: 0px auto;
     color: black;
     border-radius: 25px;
     padding: 10px 10px;
   "
 >
-  <form method="POST" action="{{ url_for('fert_recommend') }}">
+  <form method="POST" action="{{ url_for('crop_prediction') }}">
     <div class="form-group">
-      <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
-      <input
-        type="number"
-        class="form-control"
-        id="Nitrogen"
-        name="nitrogen"
-        placeholder="Enter the value (example:50)"
-        style="font-weight: bold"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="Phosphorous" style="font-size: 17px"
-        ><b>Phosphorous</b></label
-      >
-      <input
-        type="number"
-        class="form-control"
-        id="Phosphorous"
-        name="phosphorous"
-        placeholder="Enter the value (example:50)"
-        style="font-weight: bold"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="Pottasium" style="font-size: 17px"><b>Pottasium</b></label>
-      <input
-        type="number"
-        class="form-control"
-        id="Pottasium"
-        name="pottasium"
-        placeholder="Enter the value (example:50)"
-        style="font-weight: bold"
-        required
-      />
-    </div>
-    <!-- <div class="form-group">
-      <label for="ph" style="font-size: 17px"><b>ph level</b></label>
-      <input
-        type="text"
-        class="form-control"
-        id="ph"
-        name="ph"
-        placeholder="Enter the value"
-        style="font-weight: bold"
-        required
-      />
-    </div> -->
-    <div class="form-group">
-      <label for="crop" style="font-size: 17px"
-        ><b>Crop you want to grow</b></label
-      >
+      <label for="State" style="font-size: 17px "><b>State</b></label>
       <select
-        name="cropname"
+        onchange="print_city('state', this.selectedIndex);"
+        id="sts"
+        name="stt"
         class="form-control"
-        id="crop"
-        placeholder="Select a crop"
-        style="font-weight: bold"
+        style="font-weight: bold; color: black;"
+        value=""
+        
         required
-      >
-        <option selected>Select crop</option>
-        <option>rice</option>
-        <option>maize</option>
-        <option>chickpea</option>
-        <option>kidneybeans</option>
-        <option>pigeonpeas</option>
-        <option>mothbeans</option>
-        <option>mungbean</option>
-        <option>blackgram</option>
-        <option>lentil</option>
-        <option>pomegranate</option>
-        <option>banana</option>
-        <option>mango</option>
-        <option>grapes</option>
-        <option>watermelon</option>
-        <option>muskmelon</option>
-        <option>apple</option>
-        <option>orange</option>
-        <option>papaya</option>
-        <option>coconut</option>
-        <option>cotton</option>
-        <option>jute</option>
-        <option>coffee</option>
-      </select>
+      ></select>
+      <br />
+      <label for="City" style="font-size: 17px"><b>City</b></label>
+      <select
+        id="state"
+        class="form-control"
+        name="city"
+        style="font-weight: bold; color: black;"
+        required
+      ></select>
+      <script language="javascript">
+        print_state("sts");
+      </script>
     </div>
 
     <div class="d-flex justify-content-center">
       <button
-        type="submit"
+        type="button"
+        onclick="generateData()"
         class="btn btn-info"
-        style="
-          color: black;
-          font-weight: bold;
-          width: 130px;
-          height: 50px;
-          border-radius: 12px;
-          font-size: 21px;
-        "
+        style="color: black; font-weight: bold; width: 130px; height:50px; border-radius:12px; font-size: 21px; margin-bottom: 35px;"
       >
-        Predict
+        Generate
       </button>
     </div>
-  </form>
+
+    <div id="form-display" style="display: none">
+      <div class="form-group">
+        <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Nitrogen"
+          name="nitrogen"
+          placeholder="Enter the value (example:50)"
+          style="font-weight: bold"
+          value=""
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Phosphorous" style="font-size: 17px"
+          ><b>Phosphorous</b></label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="Phosphorous"
+          name="phosphorous"
+          placeholder="Enter the value (example:50)"
+          style="font-weight: bold"
+          value=""
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="Pottasium" style="font-size: 17px"><b>Pottasium</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Pottasium"
+          name="pottasium"
+          placeholder="Enter the value (example:50)"
+          style="font-weight: bold"
+          value=""
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="ph" style="font-size: 17px"><b>ph level</b></label>
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="ph"
+          name="ph"
+          placeholder="Enter the value"
+          style="font-weight: bold"
+          value=""
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Rainfall" style="font-size: 17px"><b>Rainfall (in mm)</b></label>
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="Rainfall"
+          name="rainfall"
+          placeholder="Enter the value"
+          style="font-weight: bold"
+          value=""
+          required
+        />
+      </div>
+  
+      <div class="d-flex justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-info"
+          style="color: black; font-weight: bold; width: 130px; height:50px; border-radius:12px; font-size: 21px;"
+        >
+          Predict
+        </button>
+      </div>
+    </form>
+    </div>
+    
 </div>
-{% endblock %}
+
+<script>
+  function generateData() {
+    var x = document.getElementById("form-display");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+
+    let n = Math.floor((Math.random() * (100 - 50) + 50) + 1);
+    let pho = Math.floor((Math.random() * (100 - 50) + 50) + 1);
+    let po = Math.floor((Math.random() * (100 - 50) + 50) + 1);
+    let ph = Math.floor((Math.random() * (10 - 4) + 4) + 1);
+    let r = Math.floor((Math.random() * (1000 - 300) + 300) + 1);
+    document.getElementById("Nitrogen").value = n;
+    document.getElementById("Phosphorous").value = pho;
+    document.getElementById("Pottasium").value = po;
+    document.getElementById("ph").value = ph;
+    document.getElementById("Rainfall").value = r;
+  }
+</script>
+
+
+
+<!-- Form section -->
+
+{% endblock %}
